@@ -1,0 +1,1 @@
+import '../../config/database.js'   //configuracion bases de datos
