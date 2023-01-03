@@ -9,6 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/auth',user)
-router.use('/api/commments',comment)
+router.use('/comments',comment)
 
 export default  router;

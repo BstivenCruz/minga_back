@@ -1,7 +1,7 @@
 import { Comment } from "../models/comment.js";
 
 const controller = {
-  create: async (req, res, next) => {
+  create: async (req, res,) => {
     try {
       let comments = await Comment.create(req.body);
       res.status(201).json({
@@ -10,7 +10,7 @@ const controller = {
         commentary: comments,
       });
     } catch (error) {
-      next(error);
+      console.log(error);
     }
   },
 };
