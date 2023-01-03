@@ -1,9 +1,13 @@
+import users from './users.js'
+
 import express from 'express';
-var router = express.Router();
+let router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
+router.use('/users',users)
 
 export default  router;
