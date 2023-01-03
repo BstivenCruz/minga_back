@@ -1,6 +1,7 @@
 import express from 'express';
-var router = express.Router();
+let router = express.Router();
 import user from './users.route.js'
+import comment from './coments.router.js'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,5 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/auth',user)
+router.use('/comments',comment)
 
 export default  router;
