@@ -6,7 +6,7 @@ let chapters = [
     {
         comic_id:[],
         title: "",
-        pages: [],
+        pages: {},
         order: []
     }
 ]
