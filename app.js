@@ -1,35 +1,34 @@
 import 'dotenv/config.js'
 import './config/database.js'
-import createError from 'http-errors';
 import express from 'express';
+import cors from 'cors'
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import  { __dirname }  from './utils.js'
 import indexRouter from './routes/index.js';
-// import usersRouter from './routes/users.js';
+import { errorHandler } from './middlewares/errorHandler.js'
+import { notFoundHandler } from './middlewares/notFoundHandler.js'
 
 let app = express();
-
-app.get('/', (req, res)=>{
-  res.end('aleluyaaaaa! ')
-
-})
-
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/api", indexRouter)
+app.use(notFoundHandler)
+app.use(errorHandler)
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
