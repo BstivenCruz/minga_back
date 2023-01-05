@@ -5,6 +5,6 @@ const {create}=controller
 import express from "express";
 let router=express.Router()
 
-router.post('/',create)
+router.post('/',validator(comicSchema),create)
 
 export default router

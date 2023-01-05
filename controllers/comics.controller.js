@@ -6,7 +6,10 @@ const controller={
         try{
             const {author_id,company_id, title,photo,description,category}=req.body
             let comic= await Comic.create({author_id,company_id, title,photo,description,category})
-            defaultResponse(req,res)
+            res.status(201).json({
+                success: true,
+                response: 'done',
+            })
         }catch(err){
            next(err)
         }
