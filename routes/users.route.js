@@ -17,4 +17,4 @@ router.post('/token',passport.authenticate('jwt', { session:false }),mustSignIn,
 router.put('/signout',passport.authenticate('jwt', { session:false }),signout)
 router.get('/',read)
 
-export default router
+export default router 
