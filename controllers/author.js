@@ -3,9 +3,10 @@ import {Author} from "../models/Author.js";
 
 const controller = {
     create: async (req, res) => {
+        req.body.active = true
         try{
-            const {name, city, country, user_id, active} = req.body
-            let author = await Author.create({name, city, country, user_id, active})
+            const {name, last_name, city, country, date, photo, user_id, active} = req.body
+            let author = await Author.create({name, last_name, city, country, date, photo, user_id, active})
 
             res.status(201).json({
                 success:true,
