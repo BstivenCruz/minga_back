@@ -35,13 +35,6 @@ let comics=[
         description:"description4",
         category:"63acd1e28e7c0313cba77725"
     },
-    {
-        author_id:"63acd1e28e7c0313cba77725",
-        company_id:"63acd1e28e7c0313cba77725",
-        title:"title4",
-        photo:"urlPhoto4",
-        description:"description4",
-        category:"63acd1e28e7c0313cba77725"
-    }
+    
 ]
 Comic.insertMany(comics)
