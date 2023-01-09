@@ -9,7 +9,7 @@ const schema = Joi.object(
        " string.min" : "agrega minimo un caracter",
        " string.max" : "agrega maximo 200 un caracter",
        " string.empty" : "aun no agregate tu comentario",
-       " string.base" : "debes agregar un texto"
+       " string.base" : "hola"
     }),
     commentable_id: Joi.objectId().required(),
     })
