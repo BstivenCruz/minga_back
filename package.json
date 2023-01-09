@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www.js",
-    "chapter": "node ./models/data/chapters.js",
+    "chapter": "node ./models/data/chapters.data.js",
     "com": " node ./models/data/comments.js"
   },
   "dependencies": {

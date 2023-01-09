@@ -1,6 +1,6 @@
 import  { Chapter }  from "../models/Chapter.js";
 const controller = {
-    create: async(req, res )=> {
+    create: async(req, res, next)=> {
         try{
            const {comic_id, title, pages, order} = req.body 
             await Chapter.create({comic_id, title, pages, order})
@@ -9,7 +9,7 @@ const controller = {
                 response: "done"
             })
         }catch(error){
-            console.log(error);
+           next(error)
         }
     },
 

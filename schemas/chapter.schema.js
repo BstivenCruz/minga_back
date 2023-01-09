@@ -1,13 +1,15 @@
 import Joi from "joi-oid"
 const schema = Joi.object({
     comic_id: Joi.objectId().required(),
-    title: Joi.string().required().min(1).max(200).message({
-        "any.required":"El campo es requerido, por favor ingresalo!",
-        "string.empty":"No pusiste nada en el campo nombre, por favor completalo!",
-        "string.min":"Minimo 1 caracter",
-        "string.max":"Maximo 200 caracteres"
+    title: Joi.string().required().min(1).max(200).messages({
+        "any.required":"The title is required! Please enter data",
+        "string.empty":"Title empty! Please complete",
+        "string.min":"Minimun 1 characters",
+        "string.max":"Maximun 200 characters"
 }),
-    pages: Joi.array().required(),
+    pages: Joi.array().items(Joi.string().uri()).required().min(1).messages({
+        "any.required":"This field is empty! please complete"
+    }),
     order: Joi.number()
 })
 export default schema
