@@ -1,17 +1,18 @@
+import author from './author.js';
 import comics from './comics.route.js'
-import user from './users.route.js'
+import users from './users.js'
+
 import express from 'express';
-let router = express.Router()
+let router = express.Router();
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.status(201).json({
-    succces:true,
-    response:'done',
-    response:'hola'
-})
+  res.render('index', { title: 'Express' });
 });
 
-router.use('/auth',user)
+router.use('/authors', author)
+router.use('/users',users)
 router.use('/comics',comics)
+
 export default  router;
