@@ -7,7 +7,8 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www.js",
     "chapter": "node ./models/data/chapters.js",
-    "com": " node ./models/data/comments.js"
+    "com": " node ./models/data/comments.js",
+    "compa" : "node ./models/data/companies.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

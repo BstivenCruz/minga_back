@@ -12,3 +12,4 @@ const schema = new mongoose.Schema(
 );
 
 export const Comment = mongoose.model('comments',schema)
+
