@@ -1,6 +1,6 @@
 import "dotenv/config.js";
 import "../../config/database.js";
-import { Comments } from "../newComents.js";
+import { Comment } from "../comment.js";
 
 let comments = [
   {
@@ -11,4 +11,4 @@ let comments = [
   }
   
 ];
- Comments.insertMany(comments)
+ Comment.insertMany(comments)
