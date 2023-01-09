@@ -1,6 +1,8 @@
 import author from './author.js';
 import comics from './comics.route.js'
 import users from './users.js'
+import comment from "./coments.router.js";
+import company from './company.router.js'
 
 import express from 'express';
 let router = express.Router();
@@ -14,5 +16,7 @@ router.get('/', function(req, res) {
 router.use('/authors', author)
 router.use('/users',users)
 router.use('/comics',comics)
+router.use("/comments", comment);
+router.use("/companies", company)
 
-export default  router;
+export default router;
