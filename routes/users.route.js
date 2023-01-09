@@ -8,7 +8,7 @@ import accountHasBeenVerified from './../middlewares/accountHasBeenVerified.js'
 import mustSignIn from '../middlewares/mustSignIn.js'
 import controller from '../controllers/users.controller.js'
 const { signup,signin,signintoken,signout,read } = controller
-import passport from '../config/passport.js'
+import passport from '../config/passport.js' 
 
 
 router.post('/signup',accountExistsSignUp,validator(schema),signup)
