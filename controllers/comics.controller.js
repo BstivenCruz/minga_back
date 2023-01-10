@@ -14,28 +14,5 @@ const controller={
            next(err)
         }
     },
-    get_comic : async (req,res,next)=>{
-        try {
-            const {id} = req.params
-            let comic = await comics.findById(id)
-
-            if(comic){
-                res.status(200).json({
-                    success: true,
-                    response : comic
-                }
-                )
-            } else {
-                res.status(200).json({
-                    success : false,
-                    response : 'comic not exist'
-                })
-            }
-            
-        } catch (error) {
-            console.log(error)
-            
-        }
-    }
 }
 export default controller
