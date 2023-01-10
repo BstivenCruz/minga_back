@@ -1,5 +1,5 @@
 import 'dotenv/config.js'
-import '../../../minga-back/config/database.js'
+import '../../config/database.js'
 import { user1,user2,user3,user4,user5,user6,user7,user8,user9,user10 } from './users.js'
 import { author1,author2,author3,author4,author5,author6 } from './authors.js'
 import { company1,company2,company3,company4 } from './companies.js'
