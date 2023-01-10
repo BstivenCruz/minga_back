@@ -5,11 +5,11 @@ import { author1,author2,author3,author4,author5,author6 } from './authors.js'
 import { company1,company2,company3,company4 } from './companies.js'
 import { categories } from './categories.js'
 import { comic1,comic2,comic3,comic4,comic5,comic6,comic7,comic8,comic9,comic10,comic11,comic12,comic13,comic14,comic15,comic16,comic17,comic18,comic19,comic20,comic21,comic22,comic23,comic24,comic25,comic26,comic27,comic28,comic29,comic30,comic31,comic32,comic33 } from './comics.js'
-import { User } from '../../../minga-back/models/User.js'
-import { Author } from '../../../minga-back/models/Author.js'
-import { Company } from '../../../minga-back/models/Company.js'
-import { Category } from '../../../minga-back/models/Category.js'
-import { Comic } from '../../../minga-back/models/Comic.js'
+import { User } from '../User.js'
+import { Author } from '../Author.js'
+import { Company } from '../Company.js'
+import { Category } from '../Category.js'
+import { Comic } from '../Comic.js'
 
 let newDoc = async(user,model,dataModel) => {
     let newUser = await User.create(user)
