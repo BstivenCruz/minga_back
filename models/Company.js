@@ -5,7 +5,8 @@ const company = new mongoose.Schema({
     logo : {type: String, require: true},
     website : {type: String, require: true},
     description : {type: String, require: true},
-    user_id : {type: mongoose.Types.ObjectId, ref: 'id' , require: true}
+    user_id : {type: mongoose.Types.ObjectId, ref: 'id' , require: true},
+    active : {type: Boolean, required: true}
 },{timestamps:true}
 )
 
