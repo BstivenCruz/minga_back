@@ -12,36 +12,20 @@ const controller = {
             next(error)
         }
     },
-    get_pages: async(req, res, next)=> {
-        //con query
-        let consultas = {}
-        if (req.query.comic_id){
-            consultas.comic_id = req.query.comic_id
+    get_pages: async (req, res, next) => {
+        const { _id } = req.params
+        try {
+          const comic = await Chapter.findById(_id)
+          /* console.log(comic) */
+          res.status(200).json({
+            success: true,
+            response: comic
+          })    
+        }catch (error) {
+          next(error)
         }
-        if( req.query.order){
-            consultas.order = req.query.order
-        }
-        try{ 
-            const chapter = await Chapter.find(consultas)
-            res.status(201).json({
-                succes: true,
-                response:  chapter})
-        //Con params
-/*         try{
-            const {comic_id, order} = req.params
-            const chapter = await Chapter.find({
-                comic_id: comic_id,
-                order: order
-            }) 
-            res.status(201).json({
-                succes: true,
-                response:  chapter
-            }) */
-        }catch(error){
-            next(error)
-        }
-    },
+    }
 }
-
+    
  
 export default controller;
