@@ -11,7 +11,7 @@ console.log(details);
 
 router.post('/',validator(schema), orderExists, create)
 router.get('/order', details.get_comics_order )
-/* router.get('/:comic_id/:order', get_pages) */ //params
 router.get('/pages/:_id', get_pages) //query
-
+router.get('/', details.get_comics_chapters)
+/* router.get('/:comic_id/:order', get_pages) */ //params
 export default router; 
