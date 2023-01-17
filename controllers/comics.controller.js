@@ -13,6 +13,5 @@ const controller={
         }catch(err){
            next(err)
         }
-    },
 }
 export default controller
