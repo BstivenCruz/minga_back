@@ -16,7 +16,7 @@ const categoryController={
                 notFoundHandler(req,res)
             }
         }catch(err){
-            console.log(err)
+            next(err)
         }
     }
 }

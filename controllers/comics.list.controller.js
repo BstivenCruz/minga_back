@@ -1,7 +1,7 @@
 import { Comic } from "../models/Comic.js";
 
 const comicsList={
-    get_comic: async(req,res,next)=>{
+    get_comics: async(req,res,next)=>{
         let filters={}
         let order={
             title: 'asc'

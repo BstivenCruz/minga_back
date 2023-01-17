@@ -7,9 +7,9 @@ import express from "express";
 let router=express.Router()
 import validatorTitle from "../middlewares/validatorTitle.js";
 import comicsList from '../controllers/comics.list.controller.js'
-const {get_comic}=comicsList
+const {get_comics}=comicsList
 
 router.post('/',validator(comicSchema),validatorTitle,create)
-router.get('/',get_comic)
+router.get('/',get_comics)
 
 export default router
