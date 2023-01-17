@@ -7,7 +7,7 @@ import controller from '../controllers/company.controller.js'
 const { create  } = controller
 
 
-router.post('/',companyIsActive,validator(companySchema),create)
+router.post('/',validator(companySchema),companyIsActive,create)
 
 
 export  default router
