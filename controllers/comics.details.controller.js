@@ -1,4 +1,3 @@
-import { errorHandler } from "../middlewares/errorHandler.js";
 import { Comic } from "../models/Comic.js";
 
 const comicsDetails = {
@@ -20,9 +19,7 @@ const comicsDetails = {
         });
       }
     } catch (error) {
-      console.log(error);
-      errorHandler(error);
-      next();
+      next(error);
     }
   },
 };
