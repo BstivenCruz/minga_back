@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const comicSchema=new mongoose.Schema({
-    author_id:{type:mongoose.Schema.Types.ObjectId,ref:'comics', required:true},
-    company_id:{type:mongoose.Schema.Types.ObjectId,ref:'comics'},
+    author_id:{type:mongoose.Schema.Types.ObjectId,ref:'authors', required:true},
+    company_id:{type:mongoose.Schema.Types.ObjectId,ref:'companys'},
     title:{type:String,required:true},
     photo:{type:String,required:true},
     description:{type:String,required:true},

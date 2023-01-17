@@ -1,10 +1,10 @@
 import 'dotenv/config.js'
-import '../../config/database.js'
-import { Author } from '../Author.js'
-import { Category } from '../Category.js'
-import { Comic } from '../Comic.js'
-import { Chapter } from '../Chapter.js'
-import { chapters } from './chapters.js'
+import '../config/database.js'
+import { Author } from './Author.js'
+import { Category } from './Category.js'
+import { Comic } from './Comic.js'
+import { Chapter } from './Chapter.js'
+import { chapters } from './data/chapters.js'
 
 let comic = {
     title: "pokemon adventure",
