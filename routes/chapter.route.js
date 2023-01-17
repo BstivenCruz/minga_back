@@ -1,15 +1,17 @@
 import  express  from "express";
-let router = express.Router();
 import controller from "../controllers/chapter.controller.js";
 import schema from "../schemas/chapter.schema.js";
 import validator from "../middlewares/validator.js";
 import orderExists from '../middlewares/orderExist.js';
-import controllerDetails from '../controllers/chapter.details.controller.js'
-const { get_comics_chapters} = controllerDetails
+import details from '../controllers/chapter.details.controller.js'
 
-const {create } = controller
+let router = express.Router();
+const {create, get_pages} = controller
+console.log(details);
 
 router.post('/',validator(schema), orderExists, create)
-router.get('/',get_comics_chapters)
-
+router.get('/order', details.get_comics_order )
+router.get('/pages/:_id', get_pages) //query
+router.get('/', details.get_comics_chapters)
+/* router.get('/:comic_id/:order', get_pages) */ //params
 export default router; 
