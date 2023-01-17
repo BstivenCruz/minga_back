@@ -6,13 +6,8 @@ const comicsDetails = {
     try {
       const { id } = req.params;
       let comic = await Comic.findById(id ,  "-createdAt -updatedAt -__v")
-        .populate({
-          path: "author_id",
-          select: "name  -_id",
-        }).populate({
-            path: "company_id",
-            select: "name  -_id",
-          })
+      .populate("author_id" , "name -_id")
+      .populate("company_id" , "name -_id")
       if (comic) {
         res.status(200).json({
           success: true,
