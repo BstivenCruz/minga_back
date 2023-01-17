@@ -9,9 +9,23 @@ const controller = {
                 response: "done"
             })
         }catch(error){
-           next(error)
+            next(error)
         }
     },
-
+    get_pages: async (req, res, next) => {
+        const { _id } = req.params
+        try {
+          const comic = await Chapter.findById(_id)
+          /* console.log(comic) */
+          res.status(200).json({
+            success: true,
+            response: comic
+          })    
+        }catch (error) {
+          next(error)
+        }
+    }
 }
+    
+ 
 export default controller;
