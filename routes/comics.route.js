@@ -11,4 +11,5 @@ const {get_comic}=comicsList
 
 router.post('/',validator(comicSchema),validatorTitle,create)
 router.get('/',get_comic)
+
 export default router

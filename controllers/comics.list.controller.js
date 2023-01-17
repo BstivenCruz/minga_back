@@ -4,11 +4,11 @@ const comicsList={
     get_comic: async(req,res,next)=>{
         let filters={}
         let order={
-            title: '1'
+            title: 'asc'
         }
         let pagination={
             page:1,
-            limit:10,
+            limit:10
         }
         if (req.query.title){
             filters.title= {"$regex": req.query.title, $options: 'i'}
@@ -19,7 +19,6 @@ const comicsList={
         if (req.query.page){
             pagination.page=req.query.page
         }
-        console.log(req.query)
         try{
             let comics= await Comic.find(filters)
                                     .sort(order)
