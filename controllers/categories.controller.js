@@ -22,5 +22,4 @@ const categoryController={
         }
     }
 }
-
-export default categoryController
+export default categoryController;

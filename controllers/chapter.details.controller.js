@@ -1,6 +1,6 @@
 import { Chapter } from "../models/Chapter.js"
 
-const controllerDetails = {
+const details_controller = {
 
   get_pages_from_chapter: async(req,res,next)=>{
     let query = {};
@@ -10,7 +10,7 @@ const controllerDetails = {
     }
     try {
         console.log(query);
-      const chapters = await Chapter.find(query, "-_id")
+      const chapters = await Chapter.find(query)
         .sort(order)
       res.status(201).json({
         succes: true,
@@ -23,4 +23,4 @@ const controllerDetails = {
 
 }
 
-export default controllerDetails
+export default details_controller

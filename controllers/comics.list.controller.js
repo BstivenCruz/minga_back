@@ -13,14 +13,16 @@ const comicsList={
         if (req.query.title){
             filters.title= {"$regex": req.query.title, $options: 'i'}
         }
-        if (req.query.category){
-            filters.category=req.query.category
+        if (req.query.category_id){
+            filters.category_id=req.query.category_id.split(',')
+
         }
         if (req.query.page){
             pagination.page=req.query.page
         }
         try{
             let comics= await Comic.find(filters)
+                                    .populate('category_id','_id')
                                     .sort(order)
                                     .skip( pagination.page > 0 ? ( ( pagination.page - 1 ) * pagination.limit ) : 0 )
                                     .limit(pagination.limit)
@@ -32,6 +34,6 @@ const comicsList={
             next(err)
         }
     }
-    
+
 }
 export default comicsList
