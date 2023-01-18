@@ -14,6 +14,6 @@ const { get_comic } = comicsDetails
 
 //endpoints
 router.post('/',validator(comicSchema),validatorTitle,create)
-router.get('/:id',get_comic)
+router.get('/',get_comics)
 
 export default router

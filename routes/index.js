@@ -7,6 +7,7 @@ import comment from "./coments.route.js"
 import company from './company.route.js'
 import user from './users.route.js'
 import chapters from './chapter.route.js'
+import categories from './categories.route.js'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,5 +20,6 @@ router.use('/authors', author)
 router.use('/users', user)
 router.use('/comics', comics)
 router.use("/companies", company)
+router.use("/categories",categories)
 
 export default router
