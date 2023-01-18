@@ -4,10 +4,11 @@ const categoryController={
     get_categories:async(req,res)=>{
         try{
             let all=await Category.find()
+            console.log(all)
             if(all){
                 res.status(200).json({
                     success:true,
-                    data:all
+                    response:all
                 })
             }else{
                 req.body.success=false,
