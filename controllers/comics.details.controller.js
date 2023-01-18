@@ -1,6 +1,7 @@
-import { Comic } from "../models/Comic.js";
+import { Comic } from "../models/Comic.js"
 
 const comicsDetails = {
+
   get_comic: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -21,6 +22,8 @@ const comicsDetails = {
     } catch (error) {
       next(error);
     }
-  },
-};
-export default comicsDetails;
+  }
+
+}
+
+export default comicsDetails

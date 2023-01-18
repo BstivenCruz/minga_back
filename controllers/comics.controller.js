@@ -1,7 +1,7 @@
-import { Comic } from "../models/Comic.js";
-import { User } from '../models/User.js'
-import defaultResponse from "../config/response.js";
+import { Comic } from "../models/Comic.js"
+
 const controller={
+
     create:async(req,res,next)=>{
         try{
             const {author_id,company_id, title,photo,description,category}=req.body
@@ -13,5 +13,8 @@ const controller={
         }catch(err){
            next(err)
         }
-}}
+    }
+
+}
+
 export default controller
