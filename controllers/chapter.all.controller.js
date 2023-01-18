@@ -5,7 +5,7 @@ const all_controller = {
     let consult = {}
     let order = { order: "asc" }
     let pagination = {
-      pages: 1,
+      page: 1,
       limit: 5,
     }
     if (req.query.comic_id) {

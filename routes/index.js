@@ -8,7 +8,6 @@ import company from './company.route.js'
 import user from './users.route.js'
 import chapters from './chapter.route.js'
 import categories from './categories.route.js'
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.send("minga server ready")
