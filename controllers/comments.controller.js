@@ -1,21 +1,19 @@
-import { Comment } from "../models/comment.js";
+import { Comment } from "../models/Comment.js"
 
 const controller = {
-  create: async (req, res,) => {
+
+  create: async (req, res,next) => {
     try {
-      let comments = await Comment.create(req.body);
+      let comment = await Comment.create(req.body)
       res.status(201).json({
         succes: true,
-        reponse: "Se creo nuevo comentario :)",
-        commentary: comments.text,
-      });
-    } catch (error) {
-      res.status(400).json({
-        succes: false,
-        reponse: "disculpa hubo un error"
+        reponse: 'commented: '+comment.text,
       })
+    } catch (error) {
+      next(error)
     }
-  },
-};
+  }
+
+}
 
 export default controller

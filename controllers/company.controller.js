@@ -1,20 +1,20 @@
 import { Company } from '../models/Company.js'
 
-
 const controller = {
-    create : async (req,res,) => {
+
+    create : async (req,res, next) => {
         req.body.active = true
         try {
-            const { name,logo,website,description,user_id,active} = req.body
-            await Company.create({name,logo,website,description,user_id,active})
+            let company = await Company.create(req.body)
             res.status(201).json({
                 succes: true,
-                response : "Your company was created :) "
+                response : company
             })
         } catch (error) {
-            console.log(error)    
+            next(error)    
         }
     }
+
 }
 
 export default controller
