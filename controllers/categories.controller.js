@@ -1,5 +1,5 @@
 import {Category} from '../models/Category.js'
-import defaultResponse from './../config/response'
+import defaultResponse from './../config/response.js'
 
 const categoryController={
 
