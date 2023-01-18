@@ -1,6 +1,6 @@
 import { Chapter } from "../models/Chapter.js"
 
-const controllerDetails = {
+const all_controller = {
   get_comics_chapters: async (req, res, next) => {
     let consult = {}
     let order = { order: "asc" }
@@ -37,4 +37,4 @@ const controllerDetails = {
   },
 }
 
-export default controllerDetails
+export default all_controller
