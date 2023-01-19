@@ -5,7 +5,7 @@ let router = express.Router();
 import schema from "../schemas/chapter.schema.js";
 import validator from "../middlewares/validator.js";
 import orderExists from "../middlewares/orderExist.js";
-import passport from "../config/passport.js"
+import passport from "passport"
 
 
 //controller
@@ -14,7 +14,6 @@ const { create, get_pages, get_one_chapter, update, destroy } = chapter_controll
 import all_controller from "../controllers/chapter.all.controller.js";
 const { get_comics_chapters } = all_controller;
 import details_controller from "../controllers/chapter.details.controller.js";
-import { Passport } from "passport";
 const { get_pages_from_chapter } = details_controller;
 
 router.post("/", passport.authenticate( "jwt" ,{session : false}) ,validator(schema), orderExists, create);
