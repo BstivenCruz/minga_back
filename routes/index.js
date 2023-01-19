@@ -20,6 +20,6 @@ router.use('/users', user)
 router.use('/comics', comics)
 router.use("/companies", company)
 router.use("/categories",categories)
-router.use("/auth",user)
+router.use("/auth" , user)
 
 export default router

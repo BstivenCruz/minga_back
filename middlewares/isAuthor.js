@@ -1,4 +1,4 @@
-import defaultResponse from "../../minga-back/config/response.js"
+import defaultResponse from "../config/response.js"
 
 async function isAuthor(req,res,next) {
     if (req.user.is_author) {
