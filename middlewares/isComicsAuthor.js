@@ -1,24 +1,25 @@
-import { Comic } from "../models/Comic.js"
-import { Author } from "../models/Author.js" 
+import defaultResponse from "../config/response.js";
+import { Chapter } from "../models/Chapter.js";
 
 export const isComicAuthor = async (req, res, next) => {
-    const h = req.user.id
-    
-    const { comic_id} = req.body
-    const p = 12
-    console.log( h )
-    console.log(p)
-    console.log(comic_id)
+  const user = req.user.id;
+  const { id } = req.params;
+  let chapter = await Chapter.findById(id).populate({
+    path: "comic_id",
+    populate: { path: "author_id", model: "authors" },
+  });
+  const { user_id } = chapter.comic_id.author_id
+  console.log(user_id);
+  console.log(user);
 
+  if (user.equals(user_id)) {
+    console.log("entro")
+    return next();
+  }
+    req.body.success = false;
+    req.body.sc = 400;
+    req.body.data =
+      "You must to be the author of the comic to be able to modify or delete";
+    return defaultResponse(req, res);
 
-
-
-    if (comic && author) {
-        if (comic.authors.includes(author._id)) {
-            next()
-
-        } else {
-            res.status(403).json({ message: 'Not the comic author' })
-        }
-    }
-}
+};

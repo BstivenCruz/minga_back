@@ -2,7 +2,7 @@ import express from "express";
 let router = express.Router();
 
 //schemas & middlewares
-import { schema, deleteChapter } from "../schemas/chapter.schema.js"
+import { schema, deleteChapter , updateChapter } from "../schemas/chapter.schema.js"
 import validator from "../middlewares/validator.js";
 import orderExists from "../middlewares/orderExist.js";
 import passport from "passport"
@@ -25,7 +25,7 @@ router.get("/", passport.authenticate( "jwt" ,{session : false}) ,get_comics_cha
 router.get("/:id", passport.authenticate( "jwt" , { sesssion : true}) , get_one_chapter)
 router.get("/order", passport.authenticate( "jwt" ,{session : false}) ,get_pages_from_chapter);
 router.get("/pages/:_id", passport.authenticate( "jwt" ,{session : false}) ,get_pages);
-router.put("/:id",passport.authenticate( "jwt" , {session : false}), update)
-router.delete("/:id",  passport.authenticate( "jwt" ,{session : false}) , isAuthor ,  isComicAuthor, validator(deleteChapter) , destroy)
+router.put("/:id",passport.authenticate( "jwt" , {session : false}),isAuthor, validator(updateChapter), isComicAuthor,update)
+router.delete("/:id",passport.authenticate( "jwt" ,{session : false}),isAuthor, validator(deleteChapter),isComicAuthor,destroy)
 
 export default router;
