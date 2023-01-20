@@ -1,5 +1,8 @@
 import Joi from "joi-oid"
-const schema = Joi.object({
+
+
+
+export const schema = Joi.object({
     comic_id: Joi.objectId().required(),
     title: Joi.string().required().min(1).max(200).messages({
         "any.required":"The title is required! Please enter data",
@@ -12,4 +15,15 @@ const schema = Joi.object({
     }),
     order: Joi.number()
 })
-export default schema
+
+export const deleteChapter = Joi.object({
+    comic_id: Joi.objectId().required(),
+    title: Joi.string().required().min(1).max(200).messages({
+        "any.required":" The title is required, please enter data",
+        "string.empty":" Enter your title",
+        "string.min":" Minimun characters are 1",
+        "string.max":" Maximun characters are 200"
+}),
+order: Joi.number()
+
+})
