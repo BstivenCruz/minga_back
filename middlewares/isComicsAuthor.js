@@ -8,7 +8,9 @@ export const isComicAuthor = async (req, res, next) => {
     path: "comic_id",
     populate: { path: "author_id", model: "authors" },
   });
-  const { user_id } = chapter.comic_id.author_id
+  const{  user_id } = chapter.comic_id.author_id
+  console.log(chapter);
+
   console.log(user_id);
   console.log(user);
 
