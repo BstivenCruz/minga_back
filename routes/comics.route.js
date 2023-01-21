@@ -2,24 +2,24 @@ import express from "express"
 let router=express.Router()
 
 //schemas & middlewares
-import comicSchema from '../schemas/comics.schema.js'
+import {comicSchema,logSchema} from '../schemas/comics.schema.js'
 import validatorTitle from "../middlewares/validatorTitle.js"
 import validator from "../middlewares/validator.js"
-import isAuthor from "../middlewares/isAuthor.js"
-import isAdmin from "../middlewares/isAdmin.js"
-import authorActive from "../middlewares/authorActive.js"
-import passport from "passport"
+
 //controller
 import controller from "../controllers/comics.controller.js"
-const { create } = controller
+const { create, update, destroy } = controller
 import comicsDetails from '../controllers/comics.details.controller.js'
 const { get_comic } = comicsDetails
 import comicsList from "../controllers/comics.list.controller.js"
+import authorOrCompany from "../middlewares/authorOrcompany.js"
 const { get_comics_list } = comicsList
 
 //endpoints
-router.post('/',passport.authenticate("jwt",{session:false}),isAuthor,authorActive, isAdmin ,validator(comicSchema),validatorTitle,create)
-router.get('/',passport.authenticate("jwt",{session:false}),get_comics_list)
-router.get('/:id',passport.authenticate("jwt",{session:false}),get_comic)
+router.post('/',/* passport.authenticate("jwt",{session:false}), *//* isAuthor,authorActive, isAdmin */ validator(comicSchema),validatorTitle,create)
+router.get('/',/* passport.authenticate("jwt",{session:false}), */get_comics_list)
+router.get('/:id',/* passport.authenticate("jwt",{session:false}), */get_comic)
+
+
 
 export default router
