@@ -15,6 +15,12 @@ export const verifyAoC = async(req,res,next) => {
     let company_user_id = comic.company_id?.user_id
 
     if (user.equals(author_user_id) || user.equals(company_user_id) ){
+
         return next()
+    }else{
+        res.status(404).json({
+            succes: false,
+            response: 'not found'
+        })
     }
 }

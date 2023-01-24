@@ -4,14 +4,16 @@ import validator from "../middlewares/validator.js"
 import  express  from "express"
 import controller from "../controllers/comicsbyauthandcompany.js"
 import authorOrCompany from "../middlewares/authorOrcompany.js"
+import passport from "../config/passport.js"
 
-const { create, update, destroy } = controller
 let router= express.Router()
 
-router.get('/me', read)
-router.put('/:id', /* passport.authenticate('jwt', {session: false}), */ validator(logSchema),
+
+const { read } = controller
+router.get("/me",/* passport.authenticate('jwt', {session: false}), */ read)
+/* router.put('/:id',validator(logSchema),
 authorOrCompany, update)
-router.delete('/:id',/* passport.authenticate('jwt',{session: false}), */ validator(logSchema),
-verifyAoC, destroy)
+router.delete('/:id', validator(logSchema),
+verifyAoC, destroy) */
 
 export default router

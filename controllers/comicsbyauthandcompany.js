@@ -1,13 +1,34 @@
 import { Comic } from "../models/Comic.js"
+import { User } from "../models/User.js"
+import { Author } from "../models/Author.js"
+import { Company } from "../models/Company.js"
 
-const controller ={
-read: async(req,res) => { 
-    try{let comics = Comic.findById().populate("company_id").populate("author_id")
-
-        if(comics){
-        res.status(200).json({
+const controller2 ={
+read: async(req,res, next) => { 
+console.log(req.user);
+            try{
+                let filter = {}
+                let comics;
+                if(req.user.is_author){
+                    let author = await Author.findOne({user_id: req.user.id})
+                    filter.author_id = author._id
+                    if(req.query.category_id){
+                        filter.category_id = req.query.category_id
+                    }
+                    comics = await Comic.find(filter).populate("category_id")
+                }
+                if(req.user.is_company){
+                    let company = await Company.findOne({user_id: req.user.id})
+                    filter.company_id = company._id
+                    if(req.query.category_id){
+                        filter.category_id = req.query.category_id
+                    }
+                    comics = await Comic.find(filter).populate("category_id")
+                }
+            if(comics){
+            res.status(200).json({
             succes:true,
-            response: "sc:200, deleted"
+            response: comics
         })}else{
             res.status(404).json({
                 succes: false,
@@ -15,7 +36,8 @@ read: async(req,res) => {
             })
         }
     }catch(error){
-        console.log(error);
+        next(error);
+        
     }
     update: async(req,res,next)=>{
         try{
@@ -32,6 +54,7 @@ read: async(req,res) => {
         }
     }
     destroy: async(req, res) =>{
+
         try{
             const { id }= req.params;
             await Comic.findByIdAndDelete(
@@ -43,8 +66,12 @@ read: async(req,res) => {
                 response: "sc:200, deleted"
             })
         }catch(error){
+            console.log(req.id);
+            console.log(req.user);
             console.log(error);
         }
     }
 }
 }
+
+export default controller2;
