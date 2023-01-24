@@ -17,8 +17,8 @@ import isAuthor from "../middlewares/isAuthor.js"
 const { get_pages_from_chapter } = details_controller
 
 router.post('/',passport.authenticate("jwt",{session:false}),isAuthor,isAdmin,authorActive,validator(schema), orderExists, create)
-router.get('/',passport.authenticate("jwt",{session:false}), get_comics_chapters)
-router.get('/order',passport.authenticate("jwt",{session:false}), get_pages_from_chapter)
-router.get('/pages/:_id',passport.authenticate("jwt",{session:false}), get_pages)
+router.get('/', get_comics_chapters)
+router.get('/order', get_pages_from_chapter)
+router.get('/pages/:_id', get_pages)
 
 export default router
