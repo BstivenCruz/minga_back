@@ -4,7 +4,7 @@ import { Author } from "../models/Author.js";
 import { Company } from "../models/Company.js";
 
 
-export const verifyAoC = async(req,res,next) => {
+ const verifyAoC = async(req,res,next) => {
     let user = req.user.id
     /* console.log(user) */
     let { id } = req.params 
@@ -24,3 +24,4 @@ export const verifyAoC = async(req,res,next) => {
         })
     }
 }
+export default verifyAoC
