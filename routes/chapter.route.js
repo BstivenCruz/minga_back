@@ -21,11 +21,11 @@ import details_controller from "../controllers/chapter.details.controller.js";
 const { get_pages_from_chapter } = details_controller;
 
 router.post("/", passport.authenticate( "jwt" ,{session : false}) ,validator(schema), orderExists, create);
-router.get("/", passport.authenticate( "jwt" ,{session : false}) ,get_comics_chapters);
-router.get("/:id", passport.authenticate( "jwt" , { sesssion : true}) , get_one_chapter)
-router.get("/order", passport.authenticate( "jwt" ,{session : false}) ,get_pages_from_chapter);
-router.get("/pages/:_id", passport.authenticate( "jwt" ,{session : false}) ,get_pages);
+router.get("/", get_comics_chapters);
+router.get("/:id",get_one_chapter)
+router.get("/order",get_pages_from_chapter);
+router.get("/pages/:_id", get_pages);
 router.put("/:id",passport.authenticate( "jwt" , {session : false}),isAuthor, validator(updateChapter), isComicAuthor,update)
-router.delete("/:id",passport.authenticate( "jwt" ,{session : false}),isAuthor, validator(deleteChapter),isComicAuthor,destroy)
+router.delete("/:id",passport.authenticate( "jwt" ,{session : false}),isAuthor,isComicAuthor,destroy)
 
 export default router;

@@ -19,7 +19,7 @@ const { get_comics_list } = comicsList
 
 //endpoints
 router.post('/',passport.authenticate("jwt",{session:false}),isAuthor,authorActive, isAdmin ,validator(comicSchema),validatorTitle,create)
-router.get('/',passport.authenticate("jwt",{session:false}),get_comics_list)
-router.get('/:id',passport.authenticate("jwt",{session:false}),get_comic)
+router.get('/',get_comics_list)
+router.get('/:id',get_comic)
 
 export default router

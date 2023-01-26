@@ -26,9 +26,9 @@ export const deleteChapter = Joi.object({
 });
 
 export const updateChapter = Joi.object({
-  comic_id: Joi.objectId().required(),
+  comic_id: Joi.objectId(),
 
-  title: Joi.string().required().min(1).max(200).messages({
+  title: Joi.string().min(1).max(200).messages({
     "any.required": "The title is required! Please enter data",
     "string.empty": "Title empty! Please complete",
     "string.min": "Minimun 1 characters",

@@ -8,7 +8,7 @@ const comicsList={
         }
         let pagination={
             page:1,
-            limit:10
+            limit:34
         }
         if (req.query.title){
             filters.title= {"$regex": req.query.title, $options: 'i'}
