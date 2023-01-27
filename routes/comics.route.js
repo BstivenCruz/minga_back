@@ -21,12 +21,11 @@ const { read, updated, destroyed } = controller2
 
 //endpoints
 router.get("/me",passport.authenticate('jwt', {session: false}), read)
-router.post('/',/* passport.authenticate("jwt",{session:false}), *//* isAuthor,authorActive, isAdmin */ validator(comicSchema),validatorTitle,create)
-router.get('/',/* passport.authenticate("jwt",{session:false}), */get_comics_list)
-router.get('/:id',/* passport.authenticate("jwt",{session:false}), */get_comic)
+router.post('/',isAuthor,authorActive, isAdmin, validator(comicSchema),validatorTitle,create)
+router.get('/',get_comics_list)
+router.get('/:id',get_comic)
 router.put('/:id',passport.authenticate('jwt', {session: false}), updated)
 router.delete('/:id',passport.authenticate('jwt', {session: false}), validator(logSchema),verifyAoC, destroyed)
-
 
 
 export default router
