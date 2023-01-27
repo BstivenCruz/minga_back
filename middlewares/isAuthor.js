@@ -1,8 +1,6 @@
 import defaultResponse from "../config/response.js"
 
-
 async function isAuthor(req,res,next) {
-
     if (req.user.is_author) {
         return next()
     }
@@ -11,7 +9,6 @@ async function isAuthor(req,res,next) {
     req.body.data = 'you are not allowed'
     return defaultResponse(req,res)
 }
-
 
 export default  isAuthor
 

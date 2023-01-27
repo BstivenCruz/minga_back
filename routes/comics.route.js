@@ -7,10 +7,10 @@ import validatorTitle from "../middlewares/validatorTitle.js"
 import validator from "../middlewares/validator.js"
 import passport from "passport"
 import verifyAoC from "../middlewares/verifyAuthor.js"
-
 import isAuthor from "../middlewares/isAuthor.js"
 import isAdmin from "../middlewares/isAdmin.js"
 import authorActive from "../middlewares/authorActive.js"
+
 
 //controller
 import controller from "../controllers/comics.controller.js"
