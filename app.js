@@ -9,6 +9,7 @@ import  { __dirname }  from './utils.js'
 import indexRouter from './routes/index.js'
 import { errorHandler } from './middlewares/errorHandler.js'
 import { notFoundHandler } from './middlewares/notFoundHandler.js'
+/* import passport from 'passport' */
 
 let app = express()
 
@@ -25,7 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use("/api", indexRouter)
 app.use(notFoundHandler)
 app.use(errorHandler)
-
+/* app.use(passport.initialize())
+import './config/passport.js' */
 app.use('/', indexRouter)
+
 
 export default app
