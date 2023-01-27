@@ -1,5 +1,6 @@
 import defaultResponse from "../config/response.js"
 
+const comprobador = () => [
 
 async function isAuthor(req,res,next) {
 
@@ -11,6 +12,6 @@ async function isAuthor(req,res,next) {
     req.body.data = 'you are not allowed'
     return defaultResponse(req,res)
 }
-
-export default  isAuthor
+]
+export default  comprobador
 
