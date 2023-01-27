@@ -1,6 +1,6 @@
 import Joi from "joi-oid";
 
-const comicSchema=Joi.object({
+export const comicSchema=Joi.object({
     author_id:Joi.objectId().required().messages({
         "any.required":"The field is required",
         "string.empty":"The field Author is empty",
@@ -25,4 +25,9 @@ const comicSchema=Joi.object({
     })
 })
 
-export default comicSchema;
+export const logSchema = Joi.object({
+    title: Joi.string().min(1).messages(),
+    "any.required":"The field is required",
+    "string.empty":"The field Title is empty",
+})
+

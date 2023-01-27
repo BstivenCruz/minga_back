@@ -11,7 +11,7 @@ const schema = Joi.object(
         " string.empty" : "aun no agregate tu comentario",
         " string.base" : "hola"
     }),
-    commentable_id: Joi.objectId().required(),
+    commentable_id: Joi.objectId(),
     })
 ;
 
