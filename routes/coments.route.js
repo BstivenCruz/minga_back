@@ -15,6 +15,8 @@ const {get_comments,delete_comment,edit_comment}=comments;
 
 
 
+
+
 //endpoints
 router.post("/",passport.authenticate("jwt",{session:false}), validator(schema), create)
 router.get("/",get_comments)

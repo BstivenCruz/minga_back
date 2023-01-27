@@ -9,7 +9,6 @@ const controller = {
       res.status(201).json({
         succes: true,
         reponse: comment
-        
       })
     } catch (error) {
       next(error)
