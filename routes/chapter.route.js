@@ -28,4 +28,5 @@ router.get("/pages/:_id", get_pages);
 router.put("/:id",passport.authenticate( "jwt" , {session : false}),isAdminIsAuthor, validator(updateChapter), isComicAuthor,update)
 router.delete("/:id",passport.authenticate( "jwt" ,{session : false}),isAdminIsAuthor,isComicAuthor,destroy)
 
+
 export default router;
