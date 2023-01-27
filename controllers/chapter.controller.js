@@ -1,3 +1,4 @@
+import defaultResponse from "../config/response.js"
 import { Chapter } from "../models/Chapter.js"
 
 const controller = {
@@ -14,6 +15,20 @@ const controller = {
       next(error)
     }
   },
+  get_one_chapter : async (req,res) =>{
+    
+    const { id } = req.params
+    try {
+      let chap = await Chapter.findById(id)
+      res.status(200).json({
+        success: true,
+        response: chap
+      })
+      
+    } catch (error) {
+      console.log(error)
+    }
+  },
 
   get_pages: async (req, res, next) => {
     const { _id } = req.params
@@ -27,7 +42,38 @@ const controller = {
     }catch (error) {
       next(error)
     }
-  }
+  },
+  update: async (req, res, next) => {
+    try {
+        const { id } = req.params
+       let chapter = await Chapter.findOneAndUpdate(
+            { _id: id },
+            req.body,
+            { new: true }
+        )
+        req.body.success = true 
+        req.body.sc = 200
+        req.body.data = chapter
+        return defaultResponse(req,res)
+        }
+    catch (err) {
+        next(err)
+    }
+},
+destroy: async (req, res, next) => {
+    try {
+        const { id } = req.params
+        await Chapter.findOneAndDelete({ _id: id })
+        req.body.success = true 
+        req.body.sc = 200
+        req.body.data = "destroy"
+        return defaultResponse(req,res)
+    }
+    catch (err) {
+        next(err)
+    }
+}
+
 
 }
 

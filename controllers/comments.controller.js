@@ -4,10 +4,13 @@ const controller = {
 
   create: async (req, res,next) => {
     try {
-      let comment = await Comment.create(req.body)
+      const { chapter_id, text, commentable_id } = req.body
+      await Comment.create( {user_id:req.user.id,chapter_id, text, commentable_id} )
       res.status(201).json({
         succes: true,
-        reponse: 'commented: '+comment.text,
+        reponse: 'commented: '
+        
+        
       })
     } catch (error) {
       next(error)
