@@ -1,4 +1,6 @@
 import { Comic } from "../models/Comic.js"
+import defaultResponse from "../config/response.js"
+
 
 const controller={
 
@@ -14,7 +16,6 @@ const controller={
            next(err)
         }
     }
-
 }
 
 export default controller
