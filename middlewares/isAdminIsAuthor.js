@@ -1,7 +1,7 @@
 import defaultResponse from "../config/response.js"
 
-async function isAuthor(req,res,next) {
-    if (req.user.is_author) {
+async function isAdminIsAuthor(req,res,next) {
+    if (req.user.is_admin || req.user.is_author) {
         return next()
     }
     req.body.success = false
@@ -10,5 +10,4 @@ async function isAuthor(req,res,next) {
     return defaultResponse(req,res)
 }
 
-export default  isAuthor
-
+export default  isAdminIsAuthor

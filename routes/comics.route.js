@@ -7,6 +7,10 @@ import validatorTitle from "../middlewares/validatorTitle.js"
 import validator from "../middlewares/validator.js"
 import passport from "passport"
 import verifyAoC from "../middlewares/verifyAuthor.js"
+import isAuthor from "../middlewares/isAuthor.js"
+import isAdmin from "../middlewares/isAdmin.js"
+import authorActive from "../middlewares/authorActive.js"
+
 
 //controller
 import controller from "../controllers/comics.controller.js"
@@ -21,7 +25,7 @@ const { read, updated, destroyed } = controller2
 
 //endpoints
 router.get("/me",passport.authenticate('jwt', {session: false}), read)
-router.post('/',isAuthor,authorActive, isAdmin, validator(comicSchema),validatorTitle,create)
+router.post('/',passport.authenticate("jwt",{session:false}),isAuthor,authorActive, isAdmin ,validator(comicSchema),validatorTitle,create)
 router.get('/',get_comics_list)
 router.get('/:id',get_comic)
 router.put('/:id',passport.authenticate('jwt', {session: false}), updated)
