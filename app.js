@@ -9,6 +9,7 @@ import  { __dirname }  from './utils.js'
 import indexRouter from './routes/index.js'
 import { errorHandler } from './middlewares/errorHandler.js'
 import { notFoundHandler } from './middlewares/notFoundHandler.js'
+import './config/mercadoPago.js'
 /* import passport from 'passport' */
 
 let app = express()
