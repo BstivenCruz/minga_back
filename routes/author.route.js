@@ -14,6 +14,6 @@ import controller from "../controllers/author.controller.js"
 const { create } = controller
 
 //endpoints
-router.post('/',passport.authenticate("jwt",{session:false}), isAuthor,authorActive, validator(authorSchema),authorActive, create)
+router.post('/', validator(authorSchema), create)
   
 export default router

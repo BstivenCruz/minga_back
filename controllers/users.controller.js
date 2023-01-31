@@ -63,6 +63,7 @@ const controller = {
 
     signintoken: async (req, res, next) => {
         let { user } = req
+        console.log(user)
         try {
             req.body.success = true
             req.body.sc = 200
