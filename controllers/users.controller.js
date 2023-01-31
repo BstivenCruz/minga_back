@@ -4,6 +4,7 @@ import crypto from "crypto"; //modulo para generar codigos aleatorios
 import jwt from "jsonwebtoken"; //modulo para utilizar los metodos de jwt
 import defaultResponse from "../config/response.js";
 import sgMail from "@sendgrid/mail"
+const url = process.env.url
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -12,7 +13,8 @@ function accountVerificationEmail(req, res) {
     to: req.body.mail,
     from: "parchemos3@gmail.com",
     subject: "MINGA APP - Verify Code :)",
-    html: `<p> Welcome to MINGA!! <br/><br/><br/>This is your Verify Code:</p><h2> ${req.body.verify_code}<br/><br/></h2><p>See u :)</p>`,
+    html: ` <p> Welcome to MINGA!! <br/><br/><br/>This is your Verify:</p>
+    <a href="${url}/verify/${req.body.verify_code}">press</a><p>See u :)</p>`,
   };
   try {
         sgMail.send(msg)
@@ -45,6 +47,22 @@ const controller = {
       next(error); //respuesta del manejador de errores
     }
   },
+  veryfy:  async(req,res,next) => {
+    const  {verify_Code}  = req.params
+      try {
+      
+       const user =  await User.findOneAndUpdate({ "verify_code" : verify_Code },{ is_verified: true })
+    console.log(user)
+
+        req.body.success = true
+        req.body.sc = 200
+        req.body.data = "User successfully verified!!!"
+        return defaultResponse(req, res);
+    } catch (error) {
+      next(error)
+    }
+  },
+
    verifyCode: async (req, res, next) => {
     const { user_id, verify_code } = req.query
     try {
@@ -52,9 +70,11 @@ const controller = {
       if (user.verify_code === verify_code) {
         let consultas = { _id: user_id }
         let update = { is_verified: true }
-        await User.findOneAndUpdate(consultas, update, {
+        const user =  await User.findOneAndUpdate(consultas, update, {
           new: true
         })
+    console.log(user)
+
         req.body.success = true
         req.body.sc = 200
         req.body.data = "User successfully verified!!!"
