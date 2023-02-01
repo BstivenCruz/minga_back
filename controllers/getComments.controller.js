@@ -38,36 +38,6 @@ const comments ={
             next(err)
         };
     },
-    // get_commentOfcomments:async(req,res,next)=>{
-    //     let pagination = {
-    //         page: 1,
-    //         limit: 5,
-    //     };
-    //     let order={
-    //         createdAt:'desc',
-    //     };
-    //     try{
-    //         let all=await Comment.find(chapter)
-    //                              .populate("user_id",['mail','photo','is_author','_id'])
-    //                              .skip( pagination.page > 0 ? ( ( pagination.page - 1 ) * pagination.limit ) : 0 )
-    //                              .limit(pagination.limit)
-    //                              .sort(order)
-    //         if(all){
-    //             res.status(200).json({
-    //                 success: true,
-    //                 response: all,
-    //             });
-    //         }else{
-    //             res.status(404).json({
-    //                 success:false,
-    //                 response:'comment not found'
-    //             });
-    //         };
-    //     }
-    //     catch(err){
-    //         next(err)
-    //     };
-    // },
     delete_comment:async(req,res,next)=>{
         const id={};
         if(req.query.id){

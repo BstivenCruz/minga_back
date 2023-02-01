@@ -1,8 +1,7 @@
-import { firebaserules_v1 } from "googleapis"
 import { Author } from "../models/Author.js"
 
 const controller = {
-
+    
     create: async (req, res, next) => {
         req.body.active = false
         try{
