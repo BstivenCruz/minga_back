@@ -10,5 +10,6 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 );
 
+
 export const Comment = mongoose.model('comments',schema)
 
