@@ -20,6 +20,6 @@ const {get_comments,delete_comment,edit_comment}=comments;
 //endpoints
 router.post("/",passport.authenticate("jwt",{session:false}), validator(schema), create)
 router.get("/",get_comments)
-router.delete('/',passport.authenticate("jwt",{session:false}), verify, delete_comment)
-router.put('/',passport.authenticate("jwt",{session:false}), verify,edit_comment)
+router.delete('/',passport.authenticate("jwt",{session:false}), /* verify, */ delete_comment)
+router.put('/',passport.authenticate("jwt",{session:false}), /* verify, */edit_comment)
 export default router
