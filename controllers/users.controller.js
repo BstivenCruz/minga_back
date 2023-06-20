@@ -3,8 +3,8 @@ import bcryptjs from "bcryptjs"; //modulo para hashear la contraseña
 import crypto from "crypto"; //modulo para generar codigos aleatorios
 import jwt from "jsonwebtoken"; //modulo para utilizar los metodos de jwt
 import defaultResponse from "../config/response.js";
-import sgMail from "@sendgrid/mail"
-const url = process.env.url
+import sgMail from "@sendgrid/mail";
+const url = process.env.url;
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -17,14 +17,11 @@ function accountVerificationEmail(req, res) {
     <a href="${url}/verify/${req.body.verify_code}">press</a><p>See u :)</p>`,
   };
   try {
-        sgMail.send(msg)
+    sgMail.send(msg);
   } catch (err) {
     return res.status(err.code).send(err.message);
-    
   }
-
 }
-
 
 const controller = {
   signup: async (req, res, next) => {
@@ -35,60 +32,61 @@ const controller = {
     req.body.is_verified = false; //por ahora en true
     req.body.verify_code = crypto.randomBytes(5).toString("hex"); //defino el codigo de verificacion por mail
     req.body.password = bcryptjs.hashSync(req.body.password, 10); //encripto o hasheo la contraseña
-    try { 
-        await accountVerificationEmail(req, res)
-        await User.create(req.body); 
-        req.body.success = true;
-        req.body.sc = 201; //agrego el codigo de estado
-        req.body.data = "user created"; //agrego el mensaje o información que necesito enviarle al cliente
-        return defaultResponse(req, res); //retorno la respuesta default
-     
+    try {
+      await accountVerificationEmail(req, res);
+      await User.create(req.body);
+      req.body.success = true;
+      req.body.sc = 201; //agrego el codigo de estado
+      req.body.data = "user created"; //agrego el mensaje o información que necesito enviarle al cliente
+      return defaultResponse(req, res); //retorno la respuesta default
     } catch (error) {
       next(error); //respuesta del manejador de errores
     }
   },
-  veryfy:  async(req,res,next) => {
-    const  {verify_Code}  = req.params
-      try {
-      
-       const user =  await User.findOneAndUpdate({ "verify_code" : verify_Code },{ is_verified: true })
-    console.log(user)
+  veryfy: async (req, res, next) => {
+    const { verify_Code } = req.params;
+    try {
+      const user = await User.findOneAndUpdate(
+        { verify_code: verify_Code },
+        { is_verified: true }
+      );
+      console.log(user);
 
-        req.body.success = true
-        req.body.sc = 200
-        req.body.data = "User successfully verified!!!"
-        return defaultResponse(req, res);
+      req.body.success = true;
+      req.body.sc = 200;
+      req.body.data = "User successfully verified!!!";
+      return defaultResponse(req, res);
     } catch (error) {
-      next(error)
+      next(error);
     }
   },
 
-   verifyCode: async (req, res, next) => {
-    const { user_id, verify_code } = req.query
+  verifyCode: async (req, res, next) => {
+    const { user_id, verify_code } = req.query;
     try {
-      const user = await User.findById(user_id)
+      const user = await User.findById(user_id);
       if (user.verify_code === verify_code) {
-        let consultas = { _id: user_id }
-        let update = { is_verified: true }
-        const user =  await User.findOneAndUpdate(consultas, update, {
-          new: true
-        })
-    console.log(user)
+        let consultas = { _id: user_id };
+        let update = { is_verified: true };
+        const user = await User.findOneAndUpdate(consultas, update, {
+          new: true,
+        });
+        console.log(user);
 
-        req.body.success = true
-        req.body.sc = 200
-        req.body.data = "User successfully verified!!!"
+        req.body.success = true;
+        req.body.sc = 200;
+        req.body.data = "User successfully verified!!!";
         return defaultResponse(req, res);
       } else {
-        req.body.success = false
-        req.body.sc = 400
-        req.body.data = "Failed to verify user!!!"
+        req.body.success = false;
+        req.body.sc = 400;
+        req.body.data = "Failed to verify user!!!";
         return defaultResponse(req, res);
       }
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }, 
+  },
 
   signin: async (req, res, next) => {
     let { password } = req.body;

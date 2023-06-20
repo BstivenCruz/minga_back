@@ -1,35 +1,32 @@
-import 'dotenv/config.js'
-import './config/database.js'
-import express from 'express'
-import cors from 'cors'
-import path from 'path'
-import cookieParser from 'cookie-parser'
-import logger from 'morgan'
-import  { __dirname }  from './utils.js'
-import indexRouter from './routes/index.js'
-import { errorHandler } from './middlewares/errorHandler.js'
-import { notFoundHandler } from './middlewares/notFoundHandler.js'
-import './config/mercadoPago.js'
-/* import passport from 'passport' */
+import "dotenv/config.js";
+import "./config/database.js";
+import express from "express";
+import cors from "cors";
+import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import { __dirname } from "./utils.js";
+import indexRouter from "./routes/index.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
+import { notFoundHandler } from "./middlewares/notFoundHandler.js";
+import "./config/mercadoPago.js";
 
-let app = express()
+let app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-app.use(cors())
-app.use(logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
-app.use("/api", indexRouter)
-app.use(notFoundHandler)
-app.use(errorHandler)
-/* app.use(passport.initialize())
-import './config/passport.js' */
-app.use('/', indexRouter)
+app.use(cors());
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/api", indexRouter);
+app.use(notFoundHandler);
+app.use(errorHandler);
 
+app.use("/", indexRouter);
 
-export default app
+export default app;

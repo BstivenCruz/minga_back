@@ -8,20 +8,14 @@ export const isComicAuthor = async (req, res, next) => {
     path: "comic_id",
     populate: { path: "author_id", model: "authors" },
   });
-  const{  user_id } = chapter.comic_id.author_id
-  console.log(chapter);
-
-  console.log(user_id);
-  console.log(user);
+  const { user_id } = chapter.comic_id.author_id;
 
   if (user.equals(user_id)) {
-    console.log("entro")
     return next();
   }
-    req.body.success = false;
-    req.body.sc = 400;
-    req.body.data =
-      "You must to be the author of the comic to be able to modify or delete";
-    return defaultResponse(req, res);
-
+  req.body.success = false;
+  req.body.sc = 400;
+  req.body.data =
+    "You must to be the author of the comic to be able to modify or delete";
+  return defaultResponse(req, res);
 };
